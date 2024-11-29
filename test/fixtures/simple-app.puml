@@ -1,0 +1,7 @@
+@startuml
+skinparam componentStyle rectangle
+component app.module
+component banana.module
+
+app.module --> banana.module
+@enduml
