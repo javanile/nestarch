@@ -29,8 +29,7 @@ USAGE
 <!-- usagestop -->
 # Commands
 <!-- commands -->
-* [`nestarch hello PERSON`](#nestarch-hello-person)
-* [`nestarch hello world`](#nestarch-hello-world)
+* [`nestarch generate`](#nestarch-generate)
 * [`nestarch help [COMMAND]`](#nestarch-help-command)
 * [`nestarch plugins`](#nestarch-plugins)
 * [`nestarch plugins add PLUGIN`](#nestarch-plugins-add-plugin)
@@ -43,47 +42,23 @@ USAGE
 * [`nestarch plugins unlink [PLUGIN]`](#nestarch-plugins-unlink-plugin)
 * [`nestarch plugins update`](#nestarch-plugins-update)
 
-## `nestarch hello PERSON`
+## `nestarch generate`
 
-Say hello
+Genera un diagramma UML dei moduli NestJS
 
 ```
 USAGE
-  $ nestarch hello PERSON -f <value>
-
-ARGUMENTS
-  PERSON  Person to say hello to
+  $ nestarch generate [-p <value>] [-o <value>]
 
 FLAGS
-  -f, --from=<value>  (required) Who is saying hello
+  -o, --output=<value>  [default: modules.puml] File di output per il diagramma UML
+  -p, --path=<value>    [default: src/] Percorso alla codebase NestJS
 
 DESCRIPTION
-  Say hello
-
-EXAMPLES
-  $ nestarch hello friend --from oclif
-  hello friend from oclif! (./src/commands/hello/index.ts)
+  Genera un diagramma UML dei moduli NestJS
 ```
 
-_See code: [src/commands/hello/index.ts](https://github.com/francescobianco/nestarch/blob/v0.0.0/src/commands/hello/index.ts)_
-
-## `nestarch hello world`
-
-Say hello world
-
-```
-USAGE
-  $ nestarch hello world
-
-DESCRIPTION
-  Say hello world
-
-EXAMPLES
-  $ nestarch hello world
-  hello world! (./src/commands/hello/world.ts)
-```
-
-_See code: [src/commands/hello/world.ts](https://github.com/francescobianco/nestarch/blob/v0.0.0/src/commands/hello/world.ts)_
+_See code: [src/commands/generate/index.ts](https://github.com/francescobianco/nestarch/blob/v0.0.0/src/commands/generate/index.ts)_
 
 ## `nestarch help [COMMAND]`
 
