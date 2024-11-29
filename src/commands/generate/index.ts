@@ -1,6 +1,6 @@
 
 import { Command, Flags } from '@oclif/core';
-import { parseModules } from '../../utils/parser.js';
+import { parseModules } from '../../services/parser.js';
 import * as fs from 'fs';
 
 export default class Generate extends Command {
