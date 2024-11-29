@@ -1,23 +1,37 @@
 
 import { Command, Flags } from '@oclif/core';
+import * as fs from 'node:fs';
+
 import { parseModules } from '../../services/parser.js';
-import * as fs from 'fs';
 
 export default class Generate extends Command {
     static description = 'Genera un diagramma UML dei moduli NestJS';
 
     static flags = {
-        path: Flags.string({
-            char: 'p',
-            description: 'Percorso alla codebase NestJS',
-            default: 'src/',
-        }),
         output: Flags.string({
             char: 'o',
-            description: 'File di output per il diagramma UML',
             default: 'modules.puml',
+            description: 'File di output per il diagramma UML',
+        }),
+        path: Flags.string({
+            char: 'p',
+            default: 'src/',
+            description: 'Percorso alla codebase NestJS',
         }),
     };
+
+    generatePlantUML(modules: { imports: string[]; name: string }[]): string {
+        const lines = ['@startuml', 'skinparam componentStyle rectangle'];
+        for (const { imports, name } of modules) {
+            lines.push(`component ${name}`);
+            for (const imp of imports) {
+                lines.push(`${name} --> ${imp}`);
+            }
+        }
+
+        lines.push('@enduml');
+        return lines.join('\n');
+    }
 
     async run() {
         const { flags } = await this.parse(Generate);
@@ -27,7 +41,7 @@ export default class Generate extends Command {
 
         console.log(modules);
 
-        if (!modules.length) {
+        if (modules.length === 0) {
             this.error(('Nessun modulo trovato nella codebase.'));
         }
 
@@ -40,17 +54,5 @@ export default class Generate extends Command {
             // Altrimenti, stampa sulla console
             this.log(uml);
         }
-    }
-
-    generatePlantUML(modules: { name: string; imports: string[] }[]): string {
-        const lines = ['@startuml', 'skinparam componentStyle rectangle'];
-        modules.forEach(({ name, imports }) => {
-            lines.push(`component ${name}`);
-            imports.forEach((imp) => {
-                lines.push(`${name} --> ${imp}`);
-            });
-        });
-        lines.push('@enduml');
-        return lines.join('\n');
     }
 }
