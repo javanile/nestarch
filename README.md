@@ -20,7 +20,7 @@ $ npm install -g nestarch
 $ nestarch COMMAND
 running command...
 $ nestarch (--version)
-nestarch/0.0.0 linux-x64 node-v20.17.0
+nestarch/0.0.0 linux-x64 node-v18.20.5
 $ nestarch --help [COMMAND]
 USAGE
   $ nestarch COMMAND
@@ -29,26 +29,7 @@ USAGE
 <!-- usagestop -->
 # Commands
 <!-- commands -->
-* [`nestarch generate`](#nestarch-generate)
 * [`nestarch help [COMMAND]`](#nestarch-help-command)
-
-## `nestarch generate`
-
-Genera un diagramma UML dei moduli NestJS
-
-```
-USAGE
-  $ nestarch generate [-p <value>] [-o <value>]
-
-FLAGS
-  -o, --output=<value>  [default: modules.puml] File di output per il diagramma UML
-  -p, --path=<value>    [default: src/] Percorso alla codebase NestJS
-
-DESCRIPTION
-  Genera un diagramma UML dei moduli NestJS
-```
-
-_See code: [src/commands/generate/index.ts](https://github.com/francescobianco/nestarch/blob/v0.0.0/src/commands/generate/index.ts)_
 
 ## `nestarch help [COMMAND]`
 
