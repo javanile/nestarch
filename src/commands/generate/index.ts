@@ -1,6 +1,7 @@
 
 import { Command, Flags } from '@oclif/core';
 import { parseModules } from '../../utils/parser.js';
+import * as fs from 'fs';
 
 export default class Generate extends Command {
     static description = 'Genera un diagramma UML dei moduli NestJS';
@@ -28,7 +29,14 @@ export default class Generate extends Command {
         }
 
         const uml = this.generatePlantUML(modules);
-        this.log((`Diagramma UML generato:\n\n${uml}`));
+        // Se è stato specificato un file di output, lo salviamo
+        if (flags.output) {
+            fs.writeFileSync(flags.output, uml);
+            this.log(`Diagramma salvato in: ${flags.output}`);
+        } else {
+            // Altrimenti, stampa sulla console
+            this.log(uml);
+        }
     }
 
     generatePlantUML(modules: { name: string; imports: string[] }[]): string {

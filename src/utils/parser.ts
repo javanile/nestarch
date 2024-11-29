@@ -12,6 +12,12 @@ export function parseModules(path: string): ModuleInfo[] {
     // Aggiunge tutti i file con estensione .module.ts nella directory specificata
     project.addSourceFilesAtPaths(`${path}/**/*.module.ts`);
 
+    project.getSourceFiles().forEach((sourceFile) => {
+        if (sourceFile.getFilePath().includes('node_modules')) {
+            sourceFile.delete();
+        }
+    });
+
     // Analizza ogni file trovato
     const modules: ModuleInfo[] = project.getSourceFiles().map((sourceFile) => extractModuleInfo(sourceFile));
 
@@ -22,6 +28,7 @@ function extractModuleInfo(sourceFile: SourceFile): ModuleInfo {
     // Nome del modulo (nome del file senza estensione)
     const name = sourceFile.getBaseNameWithoutExtension();
 
+    console.log(name);
     // Trova tutte le dichiarazioni di import nel file
     const imports = sourceFile
         .getImportDeclarations()
