@@ -24,6 +24,9 @@ export default class Generate extends Command {
         this.log((`Analizzo il percorso: ${flags.path}`));
 
         const modules = parseModules(flags.path);
+
+        console.log(modules);
+
         if (!modules.length) {
             this.error(('Nessun modulo trovato nella codebase.'));
         }

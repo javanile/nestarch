@@ -1,7 +1,6 @@
 @startuml
 skinparam componentStyle rectangle
 component app.module
+app.module --> ./banana/banana.module
 component banana.module
-
-app.module --> banana.module
 @enduml
