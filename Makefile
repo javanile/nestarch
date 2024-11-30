@@ -1,3 +1,4 @@
+#!make
 
 .PHONY: test
 
